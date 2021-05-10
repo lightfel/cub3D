@@ -14,10 +14,10 @@
 extern struct s_col_name mlx_col_name[];
 
 
-#define	RETURN	{ if (colors) free(colors); if (tab) free(tab); tab = (void *)0; \
-		if (colors_direct) free(colors_direct); \
+#define	RETURN	{ if (colors) {free(colors); colors = (void *)0;} if (tab) {free(tab); tab = (void *)0;} \
+		if (colors_direct) {free(colors_direct); colors_direct = (void *)0;} \
 		if (img) {XDestroyImage(img->image); \
-				XFreePixmap(xvar->display,img->pix);free(img);} \
+				XFreePixmap(xvar->display,img->pix);free(img);img = (void *)0;} \
 		return ((void *)0);}
 
 
@@ -215,6 +215,7 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 						colors[i].col = rgb_col; //rgb_col>=0?mlx_get_color_value(xvar,rgb_col):rgb_col;
 				}
 				free(tab);
+				tab = 0;
 		}
 
 		if (!(img = mlx_new_image(xvar,width,height)))
