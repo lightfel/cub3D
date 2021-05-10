@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: nhikaru <nhikaru@student.42tokyo.j>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/04 10:52:47 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/05/03 17:45:56 by nhikaru          ###   ########.fr       */
+/*   Created: 2020/10/26 15:11:51 by nhikaru           #+#    #+#             */
+/*   Updated: 2021/05/10 04:27:55 by nhikaru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,18 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "../libft/libft.h"
+# include <stdio.h>
+# include "libft.h"
 
-# define MAX_FD 256
+# define SUCCESS 1
+# define CONTINUE 0
+# define ERROR -1
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32
+#  define BUFFER_SIZE 42
 # endif
 
-int				get_next_line(int fd, char **line);
-int				fd_read(int *flag, int fd, char **line, char **save);
-char			*ft_strjoin_n(char *s1, char *s2, size_t n);
-size_t			ft_strchr_ex(char *s, int c);
-int				put_line(char **line, char **save, char *buf);
-int				get_next_line(int fd, char **line);
-void			free_set(char **dst, char *src);
+int		get_next_line(int fd, char **line);
+int		case_zero(char **line, char **save);
+
 #endif
